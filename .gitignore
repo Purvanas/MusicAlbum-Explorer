@@ -1,0 +1,99 @@
+# Visual Studio / Rider / VSCode
+.vs/
+.vscode/
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.sln.iml
+
+# Build results
+bin/
+obj/
+**/bin/
+**/obj/
+artifacts/
+
+# Visual Studio cache/options
+*.cache
+*.log
+*.vsix
+
+# NuGet
+*.nupkg
+packages/
+.nuget/
+project.lock.json
+
+# Rider
+.idea/
+*.sln.iml
+
+# OS generated files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Icon
+
+# DotNet publish
+publish/
+
+# MAUI / Xamarin / mobile
+*.apk
+*.aab
+*.ap_
+*.keystore
+*.xcworkspace
+*.xcuserstate
+*.xcuserdata
+*.xcodeproj
+*.app
+*.ipa
+*.dSYM
+
+# iOS build
+build/ios/
+
+# macOS
+*.DS_Store
+
+# Android build outputs
+*.dex
+*.class
+
+# JetBrains Rider caches
+.idea/
+*.iml
+
+# Sensitive / local files
+secrets.json
+appsettings.Development.*
+
+# VS temporary files
+*.tmp
+*.temp
+*.log
+
+# Generated ResX/designer files
+*.Designer.cs
+
+# User-specific files
+*.userprefs
+
+# Misc
+.vsconfig
+
+# Ignore NuGet packages folder in user profile (optional)
+# ~/.nuget/packages/
+
+# Ignore generated resources (UWP/Win)
+**/bin/**/Microsoft.UI.Xaml.resources.dll
+
+# Ignore project-specific generated files
+**/*.maui.cs
+
+# Prevent accidentally committing build artifacts from CI
+ci-artifacts/
+
+# End of file

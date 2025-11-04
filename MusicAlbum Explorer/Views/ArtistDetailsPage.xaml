@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:MusicAlbum_Explorer.Models"
+             x:Class="MusicAlbum_Explorer.Views.ArtistDetailsPage"
+             x:Name="page">
+
+    <ContentPage.BindingContext>
+        <models:Artist />
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="12">
+            <Label Text="Détails Artiste" FontSize="20" FontAttributes="Bold" />
+
+            <Frame Padding="0" CornerRadius="10" HasShadow="False" BackgroundColor="Transparent" BorderColor="Transparent" HeightRequest="300" IsClippedToBounds="True">
+                <Image Source="{Binding Photo}" Aspect="AspectFill" HorizontalOptions="Fill" VerticalOptions="Fill" />
+            </Frame>
+
+            <Label Text="{Binding Stagename}" FontSize="22" FontAttributes="Bold" />
+            <Label Text="{Binding MusicType}" FontSize="14" TextColor="#999" />
+
+            <Label Text="Biographie" FontSize="16" FontAttributes="Bold" Margin="0,8,0,0" />
+            <Label Text="{Binding Biographie}" FontSize="14" TextColor="#999" />
+
+            <Label Text="Albums" FontSize="16" FontAttributes="Bold" Margin="0,12,0,0" />
+
+            <CollectionView ItemsSource="{Binding Albums}" SelectionMode="Single" x:Name="AlbumsCollection">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid ColumnDefinitions="60,*,40" Padding="6" VerticalOptions="Center">
+                            <Frame HeightRequest="48" WidthRequest="48" CornerRadius="6" HasShadow="False" IsClippedToBounds="True" BackgroundColor="#EFEFEF">
+                                <Image Source="{Binding Cover}" Aspect="AspectFill" />
+                            </Frame>
+
+                            <VerticalStackLayout Grid.Column="1" Spacing="2" Padding="8,0,0,0">
+                                <Label Text="{Binding Title}" FontAttributes="Bold" />
+                                <Label Text="{Binding Year}" FontSize="12" TextColor="#999" />
+                            </VerticalStackLayout>
+
+                            <Image Grid.Column="2" Source="play.png" HorizontalOptions="End" VerticalOptions="Center" HeightRequest="24" WidthRequest="24" />
+
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={x:Reference page}, Path=AlbumTappedCommand}" CommandParameter="{Binding .}" />
+                            </Grid.GestureRecognizers>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:MusicAlbum_Explorer.ViewModels"
+             x:Class="MusicAlbum_Explorer.Views.ArtistListPage"
+             x:Name="page">
+
+    <ContentPage.BindingContext>
+        <vm:ArtistListViewModel />
+    </ContentPage.BindingContext>
+
+    <VerticalStackLayout Padding="12" Spacing="10">
+        <!-- Search with clear button (clear visible only when text exists) -->
+        <Grid ColumnDefinitions="*,Auto">
+            <SearchBar Grid.Column="0" Placeholder="Rechercher" Text="{Binding SearchText}" />
+            <Button Grid.Column="1" Text="✕" Command="{Binding ClearSearchCommand}" WidthRequest="30" HeightRequest="30" Margin="6,0,0,0" IsVisible="{Binding IsSearchNotEmpty}" />
+        </Grid>
+
+        <!-- Filters: pickers with 'Tous' default option; clear buttons reset to first item -->
+        <HorizontalStackLayout Spacing="8" VerticalOptions="Center">
+            <Grid ColumnDefinitions="*,Auto" HorizontalOptions="StartAndExpand">
+                <Picker Grid.Column="0" Title="Type" ItemsSource="{Binding AvailableMusicTypes}" SelectedItem="{Binding SelectedMusicType}" ItemDisplayBinding="{Binding Name}" />
+                
+            </Grid>
+
+            <Grid ColumnDefinitions="*,Auto" HorizontalOptions="StartAndExpand">
+                <Picker Grid.Column="0" Title="Année" ItemsSource="{Binding AvailableYears}" SelectedItem="{Binding SelectedYearOption}" ItemDisplayBinding="{Binding Display}" />
+                
+            </Grid>
+        </HorizontalStackLayout>
+
+        <CollectionView ItemsSource="{Binding FilteredArtists}" SelectionMode="Single">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="60" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Rounded artist photo -->
+                        <Frame Grid.Column="0" Padding="0" HeightRequest="60" WidthRequest="60" CornerRadius="30" HasShadow="False" IsClippedToBounds="True" VerticalOptions="Center">
+                            <Image Source="{Binding Photo}" Aspect="AspectFill" />
+                        </Frame>
+
+                        <!-- Add 20px space between image and name -->
+                        <Label Grid.Column="1" Text="{Binding Stagename}" VerticalOptions="Center" FontSize="18" Margin="20,0,0,0" />
+
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Source={x:Reference page}, Path=BindingContext.ArtistTappedCommand}" CommandParameter="{Binding .}" />
+                        </Grid.GestureRecognizers>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </VerticalStackLayout>
+
+</ContentPage>
