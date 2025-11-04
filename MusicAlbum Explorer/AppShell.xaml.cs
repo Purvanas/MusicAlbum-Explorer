@@ -11,6 +11,7 @@ namespace MusicAlbum_Explorer
             Routing.RegisterRoute(nameof(ArtistDetailsPage), typeof(ArtistDetailsPage));
             Routing.RegisterRoute(nameof(AlbumSongsPage), typeof(AlbumSongsPage));
             Routing.RegisterRoute(nameof(YouTubePlayerPage), typeof(YouTubePlayerPage));
+            Routing.RegisterRoute(nameof(FavoritesPage), typeof(FavoritesPage));
         }
     }
 }

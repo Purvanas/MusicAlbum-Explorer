@@ -5,6 +5,10 @@
              x:Class="MusicAlbum_Explorer.Views.ArtistListPage"
              x:Name="page">
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="❤" Clicked="OnFavoritesClicked" Priority="0" Order="Primary" />
+    </ContentPage.ToolbarItems>
+
     <ContentPage.BindingContext>
         <vm:ArtistListViewModel />
     </ContentPage.BindingContext>

@@ -15,7 +15,22 @@
         <CollectionView ItemsSource="{Binding Songs}" SelectionMode="None">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Button Text="{Binding Title}" CommandParameter="{Binding .}" Clicked="OnSongClicked" HorizontalOptions="FillAndExpand" />
+                    <Grid Padding="6" ColumnDefinitions="*,Auto">
+                        <Button Text="{Binding Title}" CommandParameter="{Binding .}" Clicked="OnSongClicked" HorizontalOptions="StartAndExpand" BackgroundColor="Transparent" BorderWidth="0" TextColor="White" />
+
+                        <Button Grid.Column="1" Clicked="OnFavoriteClicked" CommandParameter="{Binding .}" BackgroundColor="Transparent" BorderWidth="0" FontSize="24" Padding="6">
+                            <Button.Triggers>
+                                <DataTrigger TargetType="Button" Binding="{Binding IsFavorite}" Value="True">
+                                    <Setter Property="Text" Value="❤" />
+                                    <Setter Property="TextColor" Value="Red" />
+                                </DataTrigger>
+                                <DataTrigger TargetType="Button" Binding="{Binding IsFavorite}" Value="False">
+                                    <Setter Property="Text" Value="♡" />
+                                    <Setter Property="TextColor" Value="white" />
+                                </DataTrigger>
+                            </Button.Triggers>
+                        </Button>
+                    </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>

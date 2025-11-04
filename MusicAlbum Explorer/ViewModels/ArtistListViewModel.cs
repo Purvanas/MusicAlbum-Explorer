@@ -91,72 +91,75 @@ namespace MusicAlbum_Explorer.ViewModels
             AvailableMusicTypes.Add(electro);
             AvailableMusicTypes.Add(folk);
 
-            // Sample data
-            Artists.Add(new Artist {
+            // Sample data - create artist objects first so we can set Album.ArtistName
+            var celine = new Artist
+            {
                 Stagename = "Céline Dion",
                 Firstname = "Céline",
                 Name = "Dion",
                 Photo = "celinedion.jpg",
                 Biographie = "Chanteuse canadienne connue pour sa voix puissante.",
-                MusicType = new List<MusicType> { pop },
-                Albums = new List<Album>
+                MusicType = new List<MusicType> { pop }
+            };
+            var celineAlbum = new Album
+            {
+                Title = "Let's Talk About Love",
+                Year = 1997,
+                Cover = "celine_album1.jpg",
+                ArtistName = celine.Stagename,
+                Songs = new List<Song>
                 {
-                    new Album
-                    {
-                        Title = "Let's Talk About Love",
-                        Year = 1997,
-                        Cover = "celine_album1.jpg",
-                        Songs = new List<Song>
-                        {
-                            new Song { Title = "My Heart Will Go On", Duration = new TimeSpan(0,4,40), YouTubeUrl = "https://www.youtube.com/watch?v=FHG2oizTlpY" }
-                        }
-                    }
+                    new Song { Title = "My Heart Will Go On", Duration = new TimeSpan(0,4,40), YouTubeUrl = "https://www.youtube.com/watch?v=FHG2oizTlpY" }
                 }
-            });
+            };
+            celine.Albums.Add(celineAlbum);
+            Artists.Add(celine);
 
-            Artists.Add(new Artist {
+            var stromae = new Artist
+            {
                 Stagename = "Stromae",
                 Firstname = "Paul",
                 Name = "Van Haver",
                 Photo = "stromae.jpg",
                 Biographie = "Auteur-compositeur belge mélangeant pop et électro.",
-                MusicType = new List<MusicType> { pop, electro },
-                Albums = new List<Album>
+                MusicType = new List<MusicType> { pop, electro }
+            };
+            var stromaeAlbum = new Album
+            {
+                Title = "Racine Carrée",
+                Year = 2013,
+                Cover = "stromae_album1.jpg",
+                ArtistName = stromae.Stagename,
+                Songs = new List<Song>
                 {
-                    new Album
-                    {
-                        Title = "Racine Carrée",
-                        Year = 2013,
-                        Cover = "stromae_album1.jpg",
-                        Songs = new List<Song>
-                        {
-                            new Song { Title = "Alors on danse", Duration = new TimeSpan(0,3,27), YouTubeUrl = "https://www.youtube.com/watch?v=VHoT4N43jK8" }
-                        }
-                    }
+                    new Song { Title = "Alors on danse", Duration = new TimeSpan(0,3,27), YouTubeUrl = "https://www.youtube.com/watch?v=VHoT4N43jK8" }
                 }
-            });
+            };
+            stromae.Albums.Add(stromaeAlbum);
+            Artists.Add(stromae);
 
-            Artists.Add(new Artist {
+            var ed = new Artist
+            {
                 Stagename = "Ed Sheeran",
                 Firstname = "Edward",
                 Name = "Christopher Sheeran",
                 Photo = "edsheeran.jpg",
                 Biographie = "Chanteur britannique pop/folk.",
-                MusicType = new List<MusicType> { pop, folk },
-                Albums = new List<Album>
+                MusicType = new List<MusicType> { pop, folk }
+            };
+            var edAlbum = new Album
+            {
+                Title = "÷ (Divide)",
+                Year = 2017,
+                Cover = "edsheeran_album1.jpg",
+                ArtistName = ed.Stagename,
+                Songs = new List<Song>
                 {
-                    new Album
-                    {
-                        Title = "÷ (Divide)",
-                        Year = 2017,
-                        Cover = "edsheeran_album1.jpg",
-                        Songs = new List<Song>
-                        {
-                            new Song { Title = "Shape of You", Duration = new TimeSpan(0,3,53), YouTubeUrl = "https://www.youtube.com/watch?v=JGwWNGJdvx8" }
-                        }
-                    }
+                    new Song { Title = "Shape of You", Duration = new TimeSpan(0,3,53), YouTubeUrl = "https://www.youtube.com/watch?v=JGwWNGJdvx8" }
                 }
-            });
+            };
+            ed.Albums.Add(edAlbum);
+            Artists.Add(ed);
 
             // Populate year filter options with a "Tous" placeholder first
             var years = Artists.SelectMany(a => a.Albums).Select(al => al.Year).Distinct().OrderBy(y => y);
